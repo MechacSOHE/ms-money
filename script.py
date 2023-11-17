@@ -35,10 +35,64 @@ def search_and_reply(query, chat_id):
 # ... (le reste de votre code actuel)
 
 def search_movies(query):
-    # ... (votre code actuel)
+    try:
+        movies_list = []
+        movies_details = {}
+        website = BeautifulSoup(requests.get(f"https://mkvcinemas.skin/?s={query.replace(' ', '+')}").text, "html.parser")
+        movies = website.find_all("a", {'class': 'ml-mask jt'})
+        
+        for movie in movies:
+            if movie:
+                movies_details["id"] = f"link{movies.index(movie)}"
+                movies_details["title"] = movie.find("span", {'class': 'mli-info'}).text
+                url_list[movies_details["id"]] = movie['href']
+            
+            movies_list.append(movies_details)
+            movies_details = {}
+
+        return True, movies_list  # Indique que l'opération a réussi et renvoie la liste des films
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return False, None  # Indique que l'opération a échoué et renvoie None pour la liste des films
+
+# Exemple d'utilisation :
+success, movies_list = search_movies('your_query')
+if success:
+    print(f"Movies list: {movies_list}")
+else:
+    print("Failed to search movies.")
+
 
 def get_movie(query, api_key):
-    # ... (votre code actuel)
+    try:
+        movie_details = {}
+        movie_page_link = BeautifulSoup(requests.get(f"{url_list[query]}").text, "html.parser")
+        
+        title = movie_page_link.find("div", {'class': 'mvic-desc'}).h3.text
+        movie_details["title"] = title
+        img = movie_page_link.find("div", {'class': 'mvic-thumb'})['data-bg']
+        movie_details["img"] = img
+        links = movie_page_link.find_all("a", {'rel': 'noopener', 'data-wpel-link': 'internal'})
+        
+        final_links = {}
+        for i in links:
+            url = f"https://urlshortx.com/api?api={api_key}&url={i['href']}"
+            response = requests.get(url)
+            link = response.json()
+            final_links[f"{i.text}"] = link['shortenedUrl']
+        
+        movie_details["links"] = final_links
+        return True, movie_details  # Indique que l'opération a réussi et renvoie les détails du film
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return False, None  # Indique que l'opération a échoué et renvoie None pour les détails du film
+
+# Exemple d'utilisation :
+success, movie_details = get_movie('your_query', 'your_api_key')
+if success:
+    print(f"Movie details: {movie_details}")
+else:
+    print("Failed to get movie details.")
 
 app = Flask(__name__)
 
