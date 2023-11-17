@@ -7,12 +7,10 @@ from telegram import Bot, Update, InlineKeyboardButton, InlineKeyboardMarkup
 from bs4 import BeautifulSoup
 # script_principal.py
 from config import TOKEN, URL
-# Avant
-from telegram.ext import CommandHandler, MessageHandler, Filters, CallbackQueryHandler, Dispatcher
-
 # Après
 from telegram.ext import CommandHandler, MessageHandler, CallbackQueryHandler, Dispatcher
-from telegram.ext.filters import FILTERS
+from telegram.ext import filters as Filters
+
 
 
 TOKEN = os.getenv("TOKEN")
