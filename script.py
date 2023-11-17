@@ -8,6 +8,12 @@ from telegram.ext import CommandHandler, MessageHandler, Filters, CallbackQueryH
 from bs4 import BeautifulSoup
 # script_principal.py
 from config import TOKEN, URL
+# Avant
+from telegram.ext import CommandHandler, MessageHandler, Filters, CallbackQueryHandler, Dispatcher
+
+# Après
+from telegram.ext import CommandHandler, MessageHandler, CallbackQueryHandler, Dispatcher
+from telegram.ext.filters import Filters
 
 TOKEN = os.getenv("TOKEN")
 URL = os.getenv("URL")
