@@ -17,10 +17,8 @@ api_key = "3934b457b5c66f9c74c05ee2cf414419267ab8cb"
 url_list = {}
 
 def welcome(update, context) -> None:
-    # ... (votre code actuel)
 
 def search_and_reply(query, chat_id):
-    # ... (votre code actuel)
 
 def get_movie_details(query, chat_id):
     movie_details = get_movie(query, api_key)
