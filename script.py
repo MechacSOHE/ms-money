@@ -16,7 +16,6 @@ bot = Bot(TOKEN)
 api_key = "3934b457b5c66f9c74c05ee2cf414419267ab8cb"
 url_list = {}
 
-def welcome(update, context) -> None:
 def search_and_reply(query, chat_id):
     try:
         movies_list = search_movies(query)
