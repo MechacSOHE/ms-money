@@ -32,6 +32,7 @@ def get_movie_details(query, chat_id):
 
     bot.send_photo(chat_id, photo=img_url, caption=caption)
 
+
 # ... (le reste de votre code actuel)
 
 def search_movies(query):
