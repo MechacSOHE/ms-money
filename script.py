@@ -17,7 +17,7 @@ from telegram.ext import filters as Filters
 
 TOKEN = os.getenv("TOKEN")
 URL = os.getenv("URL")
-bot = Bot(TOKEN)
+bot = "6739487737:AAE5OAZyWLsvkFVGOCjU6o1zPyxQLkpb8Q4"
 
 api_key = "3934b457b5c66f9c74c05ee2cf414419267ab8cb"
 url_list = {}
