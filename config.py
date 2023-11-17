@@ -1,3 +1,3 @@
 # config.py
-TOKEN = "votre_token"
-URL = "votre_url"
+TOKEN = "6739487737:AAE5OAZyWLsvkFVGOCjU6o1zPyxQLkpb8Q4"
+URL = "repeatedly-flowing-mastodon.ngrok-free.app"
