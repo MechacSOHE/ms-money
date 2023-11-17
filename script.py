@@ -17,19 +17,21 @@ api_key = "3934b457b5c66f9c74c05ee2cf414419267ab8cb"
 url_list = {}
 
 def welcome(update, context) -> None:
-
 def search_and_reply(query, chat_id):
-
-def get_movie_details(query, chat_id):
-    movie_details = get_movie(query, api_key)
-    img_url = movie_details["img"]
-    caption = f"🎥 {movie_details['title']}\n\n"
-    links = movie_details["links"]
-    for i in links:
-        caption += f"🎬 {i}\n{links[i]}\n\n"
-
-    bot.send_photo(chat_id, photo=img_url, caption=caption)
-
+    try:
+        movies_list = search_movies(query)
+        if movies_list:
+            keyboards = []
+            for movie in movies_list:
+                keyboard = InlineKeyboardButton(movie["title"], callback_data=movie["id"])
+                keyboards.append([keyboard])
+            reply_markup = InlineKeyboardMarkup(keyboards)
+            bot.send_message(chat_id, 'Search Results...', reply_markup=reply_markup)
+        else:
+            bot.send_message(chat_id, 'Sorry 🙏, No Result Found!\nCheck If You Have Misspelled The Movie Name.')
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        bot.send_message(chat_id, 'An error occurred while processing your request. Please try again later.')
 
 # ... (le reste de votre code actuel)
 
