@@ -4,7 +4,6 @@ from queue import Queue
 import requests
 from flask import Flask, request
 from telegram import Bot, Update, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import CommandHandler, MessageHandler, Filters, CallbackQueryHandler, Dispatcher
 from bs4 import BeautifulSoup
 # script_principal.py
 from config import TOKEN, URL
