@@ -13,7 +13,8 @@ from telegram.ext import CommandHandler, MessageHandler, Filters, CallbackQueryH
 
 # Après
 from telegram.ext import CommandHandler, MessageHandler, CallbackQueryHandler, Dispatcher
-from telegram.ext.filters import Filters
+from telegram.ext.filters import FILTERS
+
 
 TOKEN = os.getenv("TOKEN")
 URL = os.getenv("URL")
